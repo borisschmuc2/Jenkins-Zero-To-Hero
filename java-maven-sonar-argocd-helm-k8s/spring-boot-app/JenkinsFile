@@ -57,7 +57,7 @@ pipeline {
                 sh '''
                         BUILD_NUMBER=${BUILD_NUMBER}
                         sed -i '19d' java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
-                        sed -i '19s/\\(........\\)/\\1\\${texttoinsert} \\${BUILD_NUMBER}/' \\${filepath} 
+                        sed -i '19s/\\(........\\)/\\1\\${texttoinsert} \\${BUILD_NUMBER}/' \\java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
                     '''  }
               
             withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
@@ -74,3 +74,4 @@ pipeline {
     }
   }
 
+//  sed -i '19s/\\(........\\)/\\1\\${texttoinsert} \\${BUILD_NUMBER}/' \\${filepath} 

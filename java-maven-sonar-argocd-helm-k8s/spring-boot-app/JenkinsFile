@@ -60,7 +60,7 @@ pipeline {
                         sed -i '19s/\\(........\\)/\\1\\${texttoinsert} \\${BUILD_NUMBER}/' \\${filepath} 
                     '''  }
               
-            withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {{
+            withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
                 sh '''
                     git config user.email "drborisscharfschwerdt@yahoo.de"
                     git config user.name "borisschmuc2"
@@ -69,7 +69,7 @@ pipeline {
                     git commit -m "Update deployment image to version ${BUILD_NUMBER}"
                     git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
                 '''  }
-            }}
+            }
         }
     }
   }

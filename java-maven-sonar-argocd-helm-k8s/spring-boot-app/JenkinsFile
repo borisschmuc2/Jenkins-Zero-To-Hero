@@ -51,18 +51,21 @@ pipeline {
             GIT_USER_NAME = "borisschmuc2"
         }
         steps {
-            withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
+            withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {{
+            script{
+                def texttoinsert = "image: borisschmuc2/borisc1cd1: "
+                def filepath = "java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml"
                 sh '''
                     git config user.email "drborisscharfschwerdt@yahoo.de"
                     git config user.name "borisschmuc2"
                     BUILD_NUMBER=${BUILD_NUMBER}
                     sed -i '19d' java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
-                    sed -i '19s/\\(........\\)/\\1\\image: borisschmuc2/borisc1cd1: \\${BUILD_NUMBER}/' java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
+                    sed -i '19s/\\(........\\)/\\1\\${texttoinsert} \\${BUILD_NUMBER}/' \\${filepath}
                     git add java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
                     git commit -m "Update deployment image to version ${BUILD_NUMBER}"
                     git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
-                '''
-            }
+                '''  }
+            }}
         }
     }
   }

@@ -49,11 +49,12 @@ pipeline {
         environment {
             GIT_REPO_NAME = "Jenkins-Zero-To-Hero"
             GIT_USER_NAME = "borisschmuc2"
+            texttoinsert = "image: borisschmuc2/borisc1cd1: "
+            filepath = "java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml"
         }
         steps {
             script{
-              def texttoinsert = "image: borisschmuc2/borisc1cd1: "
-              def filepath = "java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml"
+              
               withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {{
                 sh '''
                     git config user.email "drborisscharfschwerdt@yahoo.de"

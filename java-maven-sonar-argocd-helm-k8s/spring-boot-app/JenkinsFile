@@ -52,9 +52,9 @@ pipeline {
         }
         steps {
             script{
-               withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {{
-                def texttoinsert = "image: borisschmuc2/borisc1cd1: "
-                def filepath = "java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml"
+              def texttoinsert = "image: borisschmuc2/borisc1cd1: "
+              def filepath = "java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml"
+              withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {{
                 sh '''
                     git config user.email "drborisscharfschwerdt@yahoo.de"
                     git config user.name "borisschmuc2"

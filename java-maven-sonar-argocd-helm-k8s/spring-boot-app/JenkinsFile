@@ -51,8 +51,8 @@ pipeline {
             GIT_USER_NAME = "borisschmuc2"
         }
         steps {
-            withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {{
             script{
+               withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {{
                 def texttoinsert = "image: borisschmuc2/borisc1cd1: "
                 def filepath = "java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml"
                 sh '''

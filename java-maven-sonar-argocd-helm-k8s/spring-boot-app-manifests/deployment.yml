@@ -16,5 +16,4 @@ spec:
     spec:
       containers:
       - name: spring-boot-app
-        ${texttoinsert} ${BUILD_NUMBER}ports:
-        - containerPort: 8080
+        ${texttoinsert} ${BUILD_NUMBER}- containerPort: 8080

@@ -18,4 +18,4 @@ spec:
       - name: spring-boot-app
         image: borisschmuc2/borisc1cd1:2
         ports:
-        - containerPort: 8080
+        - containerPort: 8080 
